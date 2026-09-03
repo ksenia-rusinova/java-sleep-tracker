@@ -18,13 +18,22 @@ public class NumbOfSesWithBadSleepQualityFunctionTest {
     }
 
     @Test
-    void testNumberOfSessionsWithBadSleepQuality() throws IOException {
+    void testNumbOfSesWithBadSleepQuality() throws IOException {
         fileSleepLogLoader.readLogsFromFile("src/main/resources/sleep_log.txt");
 
         NumbOfSesWithBadSleepQualityFunction numbOfSesWithBadSleepQualityFunction = new NumbOfSesWithBadSleepQualityFunction();
         SleepAnalysisResult result = numbOfSesWithBadSleepQualityFunction.apply(fileSleepLogLoader.getListOfSessions());
 
         assertEquals(2, result.getValue());
+        assertEquals("Количество сессий с плохим качеством сна", result.getDescription());
+    }
+
+    @Test
+    void testNumbOfSesWithBadSleepQualityWhenInQueryNull() throws IOException {
+        NumbOfSesWithBadSleepQualityFunction numbOfSesWithBadSleepQualityFunction = new NumbOfSesWithBadSleepQualityFunction();
+        SleepAnalysisResult result = numbOfSesWithBadSleepQualityFunction.apply(fileSleepLogLoader.getListOfSessions());
+
+        assertEquals(0, result.getValue());
         assertEquals("Количество сессий с плохим качеством сна", result.getDescription());
     }
 }

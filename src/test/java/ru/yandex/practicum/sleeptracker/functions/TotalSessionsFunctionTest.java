@@ -27,4 +27,13 @@ public class TotalSessionsFunctionTest {
         assertEquals(13, result.getValue());
         assertEquals("Количество сессий сна за представленный период", result.getDescription());
     }
+
+    @Test
+    void testTotalSessionsFunctionWhenInQueryNull() throws IOException {
+        TotalSessionsFunction totalSessionsFunction = new TotalSessionsFunction();
+        SleepAnalysisResult result = totalSessionsFunction.apply(fileSleepLogLoader.getListOfSessions());
+
+        assertEquals(0, result.getValue());
+        assertEquals("Количество сессий сна за представленный период", result.getDescription());
+    }
 }
