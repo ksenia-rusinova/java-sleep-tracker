@@ -29,7 +29,7 @@ public class NumbOfSesWithBadSleepQualityFunctionTest {
     }
 
     @Test
-    void testNumbOfSesWithBadSleepQualityWhenInQueryNull() throws IOException {
+    void testNumbOfSesWithBadSleepQualityWhenInQueryNull() {
         NumbOfSesWithBadSleepQualityFunction numbOfSesWithBadSleepQualityFunction = new NumbOfSesWithBadSleepQualityFunction();
         SleepAnalysisResult result = numbOfSesWithBadSleepQualityFunction.apply(fileSleepLogLoader.getListOfSessions());
 

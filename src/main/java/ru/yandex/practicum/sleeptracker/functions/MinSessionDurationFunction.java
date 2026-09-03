@@ -10,7 +10,7 @@ import java.util.function.Function;
 public class MinSessionDurationFunction implements Function<List<SleepingSession>, SleepAnalysisResult> {
     @Override
     public SleepAnalysisResult apply(List<SleepingSession> listOfSessions) {
-        long minSessionDuration = (listOfSessions == null) ? 0 : listOfSessions
+        long minSessionDuration = (listOfSessions == null || listOfSessions.isEmpty()) ? 0 : listOfSessions
                 .stream()
                 .mapToLong(session -> Duration.between(session.getDateTimeFallAsleep(), session.getDateTimeWakeUp()).toMinutes())
                 .summaryStatistics()

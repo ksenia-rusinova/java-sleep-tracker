@@ -29,7 +29,7 @@ public class TotalSessionsFunctionTest {
     }
 
     @Test
-    void testTotalSessionsFunctionWhenInQueryNull() throws IOException {
+    void testTotalSessionsFunctionWhenInQueryNull() {
         TotalSessionsFunction totalSessionsFunction = new TotalSessionsFunction();
         SleepAnalysisResult result = totalSessionsFunction.apply(fileSleepLogLoader.getListOfSessions());
 
