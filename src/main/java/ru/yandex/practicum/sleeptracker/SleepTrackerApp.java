@@ -1,4 +1,5 @@
 package ru.yandex.practicum.sleeptracker;
+
 import ru.yandex.practicum.sleeptracker.functions.*;
 
 import java.io.IOException;
@@ -19,6 +20,7 @@ public class SleepTrackerApp {
         app.registerFunction(new MaxSessionDurationFunction());
         app.registerFunction(new AvgSessionDurationFunction());
         app.registerFunction(new NumbOfSesWithBadSleepQualityFunction());
+        app.registerFunction(new NumberOfSleeplessNightsFunction());
 
         List<SleepingSession> sessions = fileSleepLogLoader.getListOfSessions();
         listOfFunctions.stream()
