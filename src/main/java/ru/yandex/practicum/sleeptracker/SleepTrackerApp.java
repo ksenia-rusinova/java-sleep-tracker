@@ -21,6 +21,7 @@ public class SleepTrackerApp {
         app.registerFunction(new AvgSessionDurationFunction());
         app.registerFunction(new NumbOfSesWithBadSleepQualityFunction());
         app.registerFunction(new NumberOfSleeplessNightsFunction());
+        app.registerFunction(new UserClassificationFunction());
 
         List<SleepingSession> sessions = fileSleepLogLoader.getListOfSessions();
         listOfFunctions.stream()

@@ -9,7 +9,7 @@ import java.util.function.Function;
 public class TotalSessionsFunction implements Function<List<SleepingSession>, SleepAnalysisResult> {
     @Override
     public SleepAnalysisResult apply(List<SleepingSession> listOfSessions) {
-        long count = (listOfSessions == null) ? 0 : listOfSessions.size();
+        long count = listOfSessions.isEmpty() ? 0 : listOfSessions.size();
         return new SleepAnalysisResult("Количество сессий сна за представленный период", count);
     }
 }
