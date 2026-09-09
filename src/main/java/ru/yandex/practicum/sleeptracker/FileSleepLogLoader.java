@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class FileSleepLogLoader {
-    private final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd.MM.yy HH:mm");
+    private final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd.MM.yy HH:mm");
     private final List<SleepingSession> listOfSessions = new ArrayList<>();
 
     public void readLogsFromFile(String fileName) throws IOException {
@@ -21,8 +21,8 @@ public class FileSleepLogLoader {
                     .map(line -> {
                         String[] parts = splitBySemicolon(line);
                         return new SleepingSession(
-                                LocalDateTime.parse(parts[0], DATE_TIME_FORMATTER),
-                                LocalDateTime.parse(parts[1], DATE_TIME_FORMATTER),
+                                LocalDateTime.parse(parts[0], dateTimeFormatter),
+                                LocalDateTime.parse(parts[1], dateTimeFormatter),
                                 Sleep.valueOf(parts[2])
                         );
                     })
