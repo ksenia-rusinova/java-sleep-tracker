@@ -19,8 +19,8 @@ public class UserClassificationFunction implements Function<List<SleepingSession
                     LocalDate fallDate = s.getDateTimeFallAsleep().toLocalDate();
                     LocalDate wakeDate = s.getDateTimeWakeUp().toLocalDate();
 
-                    boolean fallInNightWindow = (fallTime.compareTo(LocalTime.of(19, 0)) >= 0)
-                            || (fallTime.compareTo(LocalTime.of(11, 0)) <= 0);
+                    boolean fallInNightWindow = !fallTime.isBefore(LocalTime.of(19, 0))
+                            || !fallTime.isAfter(LocalTime.of(11, 0));
 
                     if (!fallInNightWindow) return false;
 
@@ -41,11 +41,11 @@ public class UserClassificationFunction implements Function<List<SleepingSession
                     LocalTime fallTime = s.getDateTimeFallAsleep().toLocalTime();
                     LocalTime wakeTime = s.getDateTimeWakeUp().toLocalTime();
 
-                    boolean isOWL = (fallTime.compareTo(LocalTime.of(23, 0)) >= 0)
-                            && (wakeTime.compareTo(LocalTime.of(9, 0)) >= 0);
+                    boolean isOWL = (!fallTime.isBefore(LocalTime.of(23, 0)))
+                            && (!wakeTime.isBefore(LocalTime.of(9, 0)));
 
-                    boolean isEarlyBird = (fallTime.compareTo(LocalTime.of(22, 0)) <= 0)
-                            && (wakeTime.compareTo(LocalTime.of(7, 0)) <= 0);
+                    boolean isEarlyBird = (!fallTime.isAfter(LocalTime.of(22, 0)))
+                            && (!wakeTime.isAfter(LocalTime.of(7, 0)));
 
                     return isOWL ? Chronotype.OWL
                             : (isEarlyBird ? Chronotype.EARLY_BIRD : Chronotype.PIGEON);
@@ -64,9 +64,9 @@ public class UserClassificationFunction implements Function<List<SleepingSession
             type = counts.entrySet().stream()
                     .filter(e -> e.getValue() == maxCount)
                     .findFirst()
-                    .get()
-                    .getKey()
-                    .getLabel();
+                    .map(Map.Entry::getKey)
+                    .map(k -> k.getLabel())
+                    .orElse(null);
         }
 
         return new SleepAnalysisResult("Пользователь относится к хронотипу", type);
