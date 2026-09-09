@@ -10,12 +10,12 @@ import java.util.function.Function;
 public class AvgSessionDurationFunction implements Function<List<SleepingSession>, SleepAnalysisResult> {
     @Override
     public SleepAnalysisResult apply(List<SleepingSession> listOfSessions) {
-        double avgSessionDuration = listOfSessions.isEmpty() ? 0 : listOfSessions
+        double avgSessionDuration = listOfSessions
                 .stream()
                 .mapToLong(session -> Duration.between(session.getDateTimeFallAsleep(), session.getDateTimeWakeUp()).toMinutes())
                 .summaryStatistics()
                 .getAverage();
 
-        return new SleepAnalysisResult("Средняя продолжительность сессии (в минутах)", (long) avgSessionDuration);
+        return new SleepAnalysisResult("Средняя продолжительность сессии (в минутах)", (int) avgSessionDuration);
     }
 }

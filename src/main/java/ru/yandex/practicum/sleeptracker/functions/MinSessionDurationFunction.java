@@ -16,6 +16,6 @@ public class MinSessionDurationFunction implements Function<List<SleepingSession
                 .summaryStatistics()
                 .getMin();
 
-        return new SleepAnalysisResult("Минимальная продолжительность сессии (в минутах)", minSessionDuration);
+        return new SleepAnalysisResult("Минимальная продолжительность сессии (в минутах)", (int) minSessionDuration);
     }
 }

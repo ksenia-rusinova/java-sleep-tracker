@@ -10,10 +10,10 @@ import java.util.function.Function;
 public class NumbOfSesWithBadSleepQualityFunction implements Function<List<SleepingSession>, SleepAnalysisResult> {
     @Override
     public SleepAnalysisResult apply(List<SleepingSession> listOfSessions) {
-        long count = listOfSessions.isEmpty() ? 0 : listOfSessions
+        long count = listOfSessions
                 .stream()
                 .filter(session -> session.getSleepQuality() == Sleep.BAD)
                 .count();
-        return new SleepAnalysisResult("Количество сессий с плохим качеством сна", count);
+        return new SleepAnalysisResult("Количество сессий с плохим качеством сна", (int) count);
     }
 }

@@ -39,7 +39,7 @@ public class NumberOfSleeplessNightsFunction implements Function<List<SleepingSe
                 })
                 .count();
 
-        return new SleepAnalysisResult("Количество бессонных ночей", sleeplessNights);
+        return new SleepAnalysisResult("Количество бессонных ночей", (int) sleeplessNights);
     }
 
 }

@@ -10,12 +10,12 @@ import java.util.function.Function;
 public class MaxSessionDurationFunction implements Function<List<SleepingSession>, SleepAnalysisResult> {
     @Override
     public SleepAnalysisResult apply(List<SleepingSession> listOfSessions) {
-        long maxSessionDuration = listOfSessions.isEmpty() ? 0 : listOfSessions
+        long maxSessionDuration = listOfSessions
                 .stream()
                 .mapToLong(session -> Duration.between(session.getDateTimeFallAsleep(), session.getDateTimeWakeUp()).toMinutes())
                 .summaryStatistics()
                 .getMax();
 
-        return new SleepAnalysisResult("Максимальная продолжительность сессии (в минутах)", maxSessionDuration);
+        return new SleepAnalysisResult("Максимальная продолжительность сессии (в минутах)", (int) maxSessionDuration);
     }
 }
